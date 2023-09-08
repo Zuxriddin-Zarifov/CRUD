@@ -77,7 +77,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPut("update")]
-    public async ValueTask<User> Create([FromRoute] UserUpdateDto userUpdateDto)
+    public async ValueTask<User> Update([FromRoute] UserUpdateDto userUpdateDto)
     {
         User user = new User()
         {
@@ -90,7 +90,7 @@ public class UserController : ControllerBase
         return await _userRepository.UpdateAsync(user);
     }
     [HttpDelete("{id:int}")]
-    public async ValueTask<User> Create([FromRoute] long id)
+    public async ValueTask<User> Delete([FromRoute] long id)
     {
         User user = await _userRepository.GetByIdAsync(id);
         if (user is null)
