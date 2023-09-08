@@ -4,7 +4,7 @@ using UserCRUDApi.Infractructure.Interfaces;
 
 namespace UserCRUDApi.Infractructure.Repositories;
 
-public class RepositoryBase<T> : IRepositoryBase<T> where T : BaseModel
+public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : BaseModel
 {
     private readonly DbContext _dbContext;
 
@@ -16,7 +16,7 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : BaseModel
     public DbSet<T> GetSet() =>
         _dbContext.Set<T>();
 
-    public async ValueTask<T?> GetByIdAsync(int id) =>
+    public async ValueTask<T?> GetByIdAsync(long id) =>
         GetSet().FirstOrDefault(x => x.Id == id);
 
     public async ValueTask<T> CreateAsync(T entity)
